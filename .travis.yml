@@ -9,4 +9,4 @@ install:
         - docker run --detach -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 toredash/docker-teamspeak3
 
 script:
-        - bash travis/test.sh
+        - bash toredash/docker-teamspeak3/travis/test.sh
