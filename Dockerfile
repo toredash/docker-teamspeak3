@@ -12,7 +12,7 @@ ln -s /home/ts3/teamspeak3-server_linux_x86/data/ts3server.sqlitedb /home/ts3/te
 
 # Dedicated RUN for the binary
 RUN curl -s http://teamspeak.gameserver.gamed.de/ts3/releases/3.0.13.3/teamspeak3-server_linux_x86-3.0.13.3.tar.bz2 | bunzip2 | tar -x -C /home/ts3 && \
-chown -R ts3:ts3 /home/ts3/teamspeak3-server_linux_x86/data
+chown -R ts3:ts3 /home/ts3/teamspeak3-server_linux_x86
 
 USER ts3
 WORKDIR /home/ts3/teamspeak3-server_linux_x86
