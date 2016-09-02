@@ -1,0 +1,1 @@
+# docker-teamspeak3
