@@ -7,6 +7,6 @@ curl -s http://teamspeak.gameserver.gamed.de/ts3/releases/3.0.13.3/teamspeak3-se
 
 USER ts3
 WORKDIR /home/ts3
-CMD ['ts3server_startscript.sh', 'start]
+CMD ['ts3server_startscript.sh', 'start']
 
 
