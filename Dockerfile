@@ -16,7 +16,7 @@ chown -R ts3:ts3 /home/ts3/teamspeak3-server_linux_x86
 
 USER ts3
 WORKDIR /home/ts3/teamspeak3-server_linux_x86
-CMD ['./ts3server_startscript.sh', 'start']
+CMD ["./ts3server_startscript.sh", "start"]
 
 
 
