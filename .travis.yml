@@ -3,8 +3,9 @@ sudo: required
 services:
           - docker
 
-before_install:
-        - docker pull toredash/docker-teamspeak3 
-        - docker run -d -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 -v teamspeak:/home/ts3/teamspeak3-server_linux_x86/data toredash/docker-teamspeak3
-        - docker ps -a
+install:
+        - docker build -t toredash/docker-teamspeak3 .
+        - docker run --detach -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 toredash/docker-teamspeak3
 
+script:
+        - docker ps | grep teamspeak
