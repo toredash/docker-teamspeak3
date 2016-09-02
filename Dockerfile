@@ -8,7 +8,8 @@ mkdir -p /home/ts3/teamspeak3-server_linux_x86/data/logs && \
 ln -s /home/ts3/teamspeak3-server_linux_x86/data/logs /home/ts3/teamspeak3-server_linux_x86/logs && \
 ln -s /home/ts3/teamspeak3-server_linux_x86/data/query_ip_blacklist.txt /home/ts3/teamspeak3-server_linux_x86/query_ip_blacklist.txt && \
 ln -s /home/ts3/teamspeak3-server_linux_x86/data/query_ip_whitelist.txt /home/ts3/teamspeak3-server_linux_x86/query_ip_whitelist.txt && \
-ln -s /home/ts3/teamspeak3-server_linux_x86/data/ts3server.sqlitedb /home/ts3/teamspeak3-server_linux_x86/ts3server.sqlitedb
+ln -s /home/ts3/teamspeak3-server_linux_x86/data/ts3server.sqlitedb /home/ts3/teamspeak3-server_linux_x86/ts3server.sqlitedb && \
+chown -R ts3:ts3 /home/ts3
 
 USER ts3
 WORKDIR /home/ts3/
