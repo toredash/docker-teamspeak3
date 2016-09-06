@@ -2,8 +2,9 @@
 
 set -x
 
-DOCKER_ID=`docker ps | tail -n +2 | awk '{print $1}'`
-PASSWORD=`docker logs --tail=all $DOCKER_ID 2>&1 | egrep "password= \".*\"" -o | tr -d \" | cut -d " " -f2`
-docker logs $DOCKER_ID
+DOCKER_CMD="docker run --detach -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 toredash/docker-teamspeak3"
+DOCKER_ID=$DOCKER_CMD`
+DOCKER_LOGS=`docker logs --tail=all $DOCKER_ID`
+PASSWORD=`echo $DOCKER_LOGS | egrep "password= \".*\"" -o | tr -d \" | cut -d " " -f2`
 echo "login serveradmin $PASSWORD" | nc 127.0.0.1 10011  | grep "error id=0 msg=ok"
 
