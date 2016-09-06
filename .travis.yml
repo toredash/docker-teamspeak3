@@ -5,7 +5,7 @@ services:
 
 install:
         - docker build -t toredash/docker-teamspeak3 .
-        - apt-get install netcat
+        - sudo apt-get install netcat
 
 script:
         - bash travis/test.sh
