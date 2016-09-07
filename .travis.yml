@@ -4,13 +4,8 @@ services:
           - docker
 
 install:
-        - sudo apt-get install gawk
         - docker build -t toredash/docker-teamspeak3 .
-        - docker run --detach -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 toredash/docker-teamspeak3
-        - docker ps -a
-        - sleep 15
-        - docker logs --tail=all `docker ps | tail -n +2 | awk '{print $1}'`
-
+        - sudo apt-get install netcat
 
 script:
         - bash travis/test.sh
