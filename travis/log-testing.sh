@@ -1,9 +1,11 @@
 #!/bin/bash
 
+HOMEDIR=/ts3
+
 set -x
 
 docker volume create --name logs
-DOCKER_ID=`docker run --detach -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 -v logs:/home/ts3/teamspeak3-server_linux_x86/logs toredash/docker-teamspeak3`
+DOCKER_ID=`docker run --detach -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 -v logs:$HOMEDIR/logs toredash/docker-teamspeak3`
 
 COUNTER=0
 while [ $COUNTER -lt 10 ]; do
@@ -15,7 +17,7 @@ while [ $COUNTER -lt 10 ]; do
         sleep 5
 done
 
-LINES_BEFORE=`docker exec $DOCKER_ID ls /home/ts3/teamspeak3-server_linux_x86/logs| wc -l`
+LINES_BEFORE=`docker exec $DOCKER_ID ls $HOMEDIR/logs | wc -l`
 
 
 docker stop $DOCKER_ID
@@ -23,7 +25,7 @@ docker rm $DOCKER_ID
 
 #
 
-DOCKER_ID=`docker run --detach -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 -v logs:/home/ts3/teamspeak3-server_linux_x86/logs toredash/docker-teamspeak3`
+DOCKER_ID=`docker run --detach -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 -v logs:$HOMEDIR/logs toredash/docker-teamspeak3`
 
 COUNTER=0
 while [ $COUNTER -lt 10 ]; do
@@ -35,7 +37,7 @@ while [ $COUNTER -lt 10 ]; do
         sleep 5
 done
 
-LINES_AFTER=`docker exec $DOCKER_ID ls /home/ts3/teamspeak3-server_linux_x86/logs| wc -l`
+LINES_AFTER=`docker exec $DOCKER_ID ls $HOMEDIR/logs | wc -l`
 docker stop $DOCKER_ID
 docker rm $DOCKER_ID
 #
