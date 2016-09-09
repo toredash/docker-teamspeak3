@@ -19,4 +19,4 @@ USER ts3
 WORKDIR ${homedir}
 # Dedicated RUN for the binary
 RUN curl -s http://teamspeak.gameserver.gamed.de/ts3/releases/${ts3_version}/teamspeak3-server_linux_x86-${ts3_version}.tar.bz2 | bunzip2 | tar -x --strip-components=1
-CMD ["./teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh"]
+CMD ["./ts3server_minimal_runscript.sh"]
