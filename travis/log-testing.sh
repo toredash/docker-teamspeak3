@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOMEDIR=/ts3
+HOMEDIR=/home/ts3
 
 set -x
 

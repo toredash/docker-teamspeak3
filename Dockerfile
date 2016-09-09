@@ -3,12 +3,11 @@ MAINTAINER Tore S. Lønøy <tore.lonoy@gmail.com>
 EXPOSE 9987/udp 30033 10011 41144
 
 ENV ts3_version 3.0.13.3
-ENV homedir /ts3
+ENV homedir /home/ts3
 
 RUN \
 useradd ts3 -U -m -s /bin/bash && \
 yum install bzip2 /lib/ld-linux.so.2 -y && \
-ln -s ${homedir} /home/ts3/teamspeak3-server_linux_x86 && \
 mkdir -p ${homedir}/data && \
 mkdir -p ${homedir}/logs && \
 ln -s ${homedir}/data/query_ip_blacklist.txt ${homedir}/query_ip_blacklist.txt && \
@@ -19,5 +18,5 @@ chown -R ts3:ts3 ${homedir}
 USER ts3
 WORKDIR ${homedir}
 # Dedicated RUN for the binary
-RUN curl -s http://teamspeak.gameserver.gamed.de/ts3/releases/${ts3_version}/teamspeak3-server_linux_x86-${ts3_version}.tar.bz2 | bunzip2 | tar -x 
+RUN curl -s http://teamspeak.gameserver.gamed.de/ts3/releases/${ts3_version}/teamspeak3-server_linux_x86-${ts3_version}.tar.bz2 | bunzip2 | tar -x --strip-components=1
 CMD ["./teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh"]
