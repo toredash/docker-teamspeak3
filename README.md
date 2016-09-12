@@ -1,5 +1,5 @@
-<img src="https://travis-ci.org/toredash/docker-teamspeak3.svg?branch=master"
-             alt="build status">
+[![](https://images.microbadger.com/badges/image/toredash/docker-teamspeak3.svg)](http://microbadger.com/images/toredash/docker-teamspeak3)
+[![](https://travis-ci.org/toredash/docker-teamspeak3.svg?branch=master)](https://travis-ci.org/toredash/docker-teamspeak3)
 
 # docker-teamspeak3
 
