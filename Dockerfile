@@ -13,7 +13,8 @@ mkdir -p ${homedir}/logs && \
 ln -s ${homedir}/data/query_ip_blacklist.txt ${homedir}/query_ip_blacklist.txt && \
 ln -s ${homedir}/data/query_ip_whitelist.txt ${homedir}/query_ip_whitelist.txt && \
 ln -s ${homedir}/data/ts3server.sqlitedb ${homedir}/ts3server.sqlitedb && \
-chown -R ts3:ts3 ${homedir}
+chown -R ts3:ts3 ${homedir}  && \
+ln -s ${homedir} /ts3
 
 USER ts3
 WORKDIR ${homedir}
