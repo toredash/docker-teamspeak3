@@ -44,7 +44,7 @@ You need to create a storage volume for config and one for logs, but you don't n
 
 Then you need to start the container with correct storage mapping.
 
-    docker run -d -p 9987:9987/udp -v logs:/home/ts3/teamspeak3-server_linux_x86/logs -v data:/home/ts3/teamspeak3-server_linux_x86/data toredash/docker-teamspeak3
+    docker run -d -p 9987:9987/udp -v logs:/ts3/logs -v data:/ts3/data toredash/docker-teamspeak3
 
 ## Filetransfer in the Teamspeak client doesnt work, what gives?
 
