@@ -17,11 +17,11 @@ while [ $COUNTER -lt 10 ]; do
         sleep 5
 done
 
-echo "login serveradmin $PASSWORD" | nc 127.0.0.1 10011  | tee -a /output | grep "error id=0 msg=ok"
+echo "login serveradmin $PASSWORD" | nc 127.0.0.1 10011  | tee -a /tmp/output | grep "error id=0 msg=ok"
 
 if [[ $? -ne 0 ]]; then
   echo "Unable to connect to TS3 instance..."
-  cat /output
+  cat /tmp/output
   exit 1
 fi
 
