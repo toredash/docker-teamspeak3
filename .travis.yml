@@ -11,3 +11,4 @@ script:
         - bash travis/test.sh
           # Testing that logs er persistent
         - bash travis/log-testing.sh
+        - bash ip-blacklist.sh
