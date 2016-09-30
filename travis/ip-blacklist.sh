@@ -17,7 +17,14 @@ while [ $COUNTER -lt 10 ]; do
         
 done
 
-echo "" | nc 127.0.0.1 10011
+sleep 5
+
+echo "version" | nc 127.0.0.1 10011
+
+echo "version" | nc 127.0.0.1 10011
+
+sleep 5
+
 echo "login serveradmin $PASSWORD" | nc 127.0.0.1 10011  | tee -a /tmp/output | grep "error id=0 msg=ok"
 
 if [[ $? -ne 0 ]]; then
