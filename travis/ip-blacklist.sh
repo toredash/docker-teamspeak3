@@ -2,7 +2,7 @@
 
 set -x
 
-DOCKER_VOLUME=`docker volume create data`
+DOCKER_VOLUME=`docker volume create --name data`
 DOCKER_ID=`docker run --detach -p 9987:9987/udp -p 10011:10011 -v data:/ts3/data toredash/docker-teamspeak3`
 
 COUNTER=0
@@ -24,8 +24,9 @@ if [[ $? -ne 0 ]]; then
   exit 1
 fi
 
-DOCKER_PATH=`volume docker inspect $DOCKER_VOLUME | grep Mountpoint  | cut -d"\"" -f 4`
-echo 127.0.0.1 > $DOCKER_PATH/query_ip_blacklist.txt
+DOCKER_PATH=`docker volume inspect $DOCKER_VOLUME | grep Mountpoint  | cut -d"\"" -f 4`
+echo 127.0.0.1 >> $DOCKER_PATH/query_ip_blacklist.txt
+cat $DOCKER_PATH/query_ip_blacklist.txt
 
 docker start $DOCKER_ID
 
