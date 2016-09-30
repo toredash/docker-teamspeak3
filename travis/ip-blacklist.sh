@@ -2,10 +2,12 @@
 
 set -x
 
-docker volume create --name data
-DOCKER_ID=`docker run --detach -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 -v logs:/home/ts3/teamspeak3-server_linux_x86/logs toredash/docker-teamspeak3`
+DOCKER_VOLUME=`docker volume create data`
+DOCKER_ID=`docker run --detach -p 9987:9987/udp -p 10011:10011 -v data:/ts3/data toredash/docker-teamspeak3`
 
 COUNTER=0
+PASSWORD=""
+
 while [ $COUNTER -lt 10 ]; do
 
         DOCKER_LOGS=`docker logs --tail=all $DOCKER_ID 2>&1`
@@ -15,31 +17,25 @@ while [ $COUNTER -lt 10 ]; do
         sleep 5
 done
 
-LINES_BEFORE=`docker exec $DOCKER_ID ls /home/ts3/teamspeak3-server_linux_x86/logs| wc -l`
+echo "login serveradmin $PASSWORD" | nc 127.0.0.1 10011  | grep "error id=0 msg=ok"
 
-
-docker stop $DOCKER_ID
-docker rm $DOCKER_ID
-
-#
-
-DOCKER_ID=`docker run --detach -p 9987:9987/udp -p 30033:30033 -p 10011:10011 -p 41144:41144 -v data:/ts3/data toredash/docker-teamspeak3`
-
-COUNTER=0
-while [ $COUNTER -lt 10 ]; do
-
-        DOCKER_LOGS=`docker logs --tail=all $DOCKER_ID 2>&1`
-        PASSWORD=`echo $DOCKER_LOGS | egrep "password= \".*\"" -o | tr -d \" | cut -d " " -f2`
-        let COUNTER=$COUNTER+1
-        if [ -z "$PASSWORD" ]; then echo "No password, wait...."; else break; fi 
-        sleep 5
-done
-
-query_ip_blacklist.txt
-
-
-if [[ $x -gt $y ]]; then
- exit 0
+if [[ $? -ne 0 ]];
+  echo "Unable to connect to TS3 instance..."
+  exit 1
 fi
 
-exit 1
+DOCKER_PATH=`volume docker inspect $DOCKER_VOLUME | grep Mountpoint  | cut -d"\"" -f 4`
+echo 127.0.0.1 > $DOCKER_PATH/query_ip_blacklist.txt
+
+docker start $DOCKER_ID
+
+sleep 15
+
+echo "login serveradmin $PASSWORD" | nc 127.0.0.1 10011  | grep "error id=0 msg=ok"
+
+if [[ $? -ne 1 ]];
+  echo "ABLE to connect to TS3 instance... This should not work"
+  exit 1
+fi
+
+exit 0
