@@ -8,7 +8,7 @@ install:
         - sudo apt-get install netcat
 
 script:
-        - bash travis/test.sh
+        #- bash travis/test.sh
           # Testing that logs er persistent
-        - bash travis/log-testing.sh
-        - bash ip-blacklist.sh
+        #- bash travis/log-testing.sh
+        - bash travis/ip-blacklist.sh
