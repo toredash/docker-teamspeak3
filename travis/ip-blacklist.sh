@@ -13,13 +13,15 @@ while [ $COUNTER -lt 10 ]; do
         DOCKER_LOGS=`docker logs --tail=all $DOCKER_ID 2>&1`
         PASSWORD=`echo $DOCKER_LOGS | egrep "password= \".*\"" -o | tr -d \" | cut -d " " -f2`
         let COUNTER=$COUNTER+1
-        if [ -z "$PASSWORD" ]; then echo "No password, wait...."; else break; fi 
-        
+        if [ -z "$PASSWORD" ]; then echo "No password, wait...."; else break; fi  
 done
 
-sleep 35
-
-echo "\r\version\r\rlogin serveradmin $PASSWORD\r" | nc 127.0.0.1 10011 2>&1 | tee -a /tmp/output | grep "error id=0 msg=ok"
+COUNTER=0
+while [ $COUNTER -lt 10 ]; do
+  echo "login serveradmin $PASSWORD\r" | nc 127.0.0.1 10011 2>&1 | tee -a /tmp/output | grep "error id=0 msg=ok"
+  cat /tmp/output
+  sleep 5
+done
 
 if [[ $? -ne 0 ]]; then
   echo "Unable to connect to TS3 instance..."
