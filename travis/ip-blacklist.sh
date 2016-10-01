@@ -17,7 +17,7 @@ while [ $COUNTER -lt 10 ]; do
         
 done
 
-sleep 15
+sleep 35
 
 echo "login serveradmin $PASSWORD\r" | nc 127.0.0.1 10011 2>&1 | tee -a /tmp/output | grep "error id=0 msg=ok"
 
