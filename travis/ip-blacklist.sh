@@ -19,7 +19,7 @@ done
 
 sleep 35
 
-echo "login serveradmin $PASSWORD\r" | nc 127.0.0.1 10011 2>&1 | tee -a /tmp/output | grep "error id=0 msg=ok"
+echo "\r\version\r\rlogin serveradmin $PASSWORD\r" | nc 127.0.0.1 10011 2>&1 | tee -a /tmp/output | grep "error id=0 msg=ok"
 
 if [[ $? -ne 0 ]]; then
   echo "Unable to connect to TS3 instance..."
