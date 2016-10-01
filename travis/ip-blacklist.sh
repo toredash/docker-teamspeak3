@@ -25,7 +25,7 @@ set password [lindex $argv 0]
 spawn telnet 127.0.0.1 10011 
 #The script expects login
 expect "TS3"
-expect "Welcome to the TeamSpeak 3 ServerQuery interface, type \"help\" for a list of commands and \"help <command>\" for information on a specific command."
+expect 'Welcome to the TeamSpeak 3 ServerQuery interface, type "help" for a list of commands and "help <command>" for information on a specific command.'
 #The script sends the user variable
 send "login serveradmin $password"
 #The script expects Password
