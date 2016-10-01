@@ -17,17 +17,9 @@ while [ $COUNTER -lt 10 ]; do
         
 done
 
-sleep 5
+sleep 15
 
-echo "version" | nc 127.0.0.1 10011
-
-echo "version" | nc 127.0.0.1 10011
-
-docker exec -d $DOCKER_ID echo version \| nc 127.0.0.1 10011
-
-sleep 5
-
-echo "login serveradmin $PASSWORD" | nc 127.0.0.1 10011  | tee -a /tmp/output | grep "error id=0 msg=ok"
+echo "login serveradmin $PASSWORD\r" | nc 127.0.0.1 10011 2>&1 | tee -a /tmp/output | grep "error id=0 msg=ok"
 
 if [[ $? -ne 0 ]]; then
   echo "Unable to connect to TS3 instance..."
