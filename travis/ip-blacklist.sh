@@ -30,14 +30,12 @@ expect "Welcome to the TeamSpeak 3 ServerQuery interface, type \"help\" for a li
 send "login serveradmin $password"
 #The script expects Password
 expect "error id=0 msg=ok"
+send "exit\r"
+expect eof
 EOF
 
-COUNTER=0
-while [ $COUNTER -lt 10 ]; do
-  echo "login serveradmin $PASSWORD " | nc 127.0.0.1 10011 2>&1 | tee -a /tmp/output | grep "error id=0 msg=ok"
-  cat /tmp/output
-  sleep 5
-done
+echo "login serveradmin $PASSWORD " | nc 127.0.0.1 10011 2>&1 | tee -a /tmp/output | grep "error id=0 msg=ok"
+
 
 if [[ $? -ne 0 ]]; then
   echo "Unable to connect to TS3 instance..."
