@@ -14,5 +14,5 @@ chown -R ts3:ts3 /home/ts3
 USER ts3
 WORKDIR /home/ts3/
 # Dedicated RUN for the binary
-RUN curl -s http://teamspeak.gameserver.gamed.de/ts3/releases/3.0.13.4/teamspeak3-server_linux_x86-3.0.13.4.tar.bz2 | bunzip2 | tar -x 
+RUN curl -s http://teamspeak.gameserver.gamed.de/ts3/releases/3.0.13.6/teamspeak3-server_linux_x86-3.0.13.6.tar.bz2 | bunzip2 | tar -x 
 CMD ["./teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh"]
