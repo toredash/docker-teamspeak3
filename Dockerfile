@@ -2,7 +2,7 @@ FROM centos:7
 MAINTAINER Tore S. Lønøy <tore.lonoy@gmail.com>
 EXPOSE 9987/udp 30033 10011 41144
 
-ENV ts3_version 3.0.13.6
+ENV ts3_version 3.0.13.8
 ENV homedir /home/ts3
 
 RUN \
